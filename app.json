@@ -50,7 +50,7 @@
             "description": "Kanalda, kopyala vəya yönləndir etiketi ilə yayımlasın. Dəyər True/False şəklində olmalıdır."
         },
         "SESSION_NAME": {
-            "description": "Bot sessiyasının adı."
+            "description": "Bot sessiyasının adı (boşluqdan istifadə etmə)."
         }
     },
     "buildpacks": [ 
