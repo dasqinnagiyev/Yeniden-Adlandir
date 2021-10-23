@@ -21,7 +21,7 @@
             "description": "Tokeni @BotFather dən əldə et"
         },
         "BOT_OWNER": {
-            "description": "Bot sahibinin UserID"
+            "description": "Bot sahibinin istifadəçi adı"
         },
         "MONGODB_URI": {
             "description": "İstifadəçilərin ID-lərini (kanalda) yadda saxlamaq üçün MongoDB Database URI."
