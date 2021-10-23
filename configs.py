@@ -25,9 +25,9 @@ Adını dəyişmək vəya kiçik şəkil (thumbnail) əlavə etmək istədiyin f
 Digər xüsusiyyətləri görmək üçün /ayarlar de.
     """
     PROGRESS = """
-Percentage : {0}%
-Done: {1}
-Total: {2}
-Speed: {3}/s
-ETA: {4}
+Faiz : {0}%
+Bitdi: {1}
+Cəmi: {2}
+Sürət: {3}/s
+Təxmini çatma vaxtı: {4}
     """
