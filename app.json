@@ -1,0 +1,70 @@
+{
+    "name": "Yenidən Adlandır",
+    "description": "Telegramda Faylları yenidən adlandıran bot @dasqinnagiyev",
+    "keywords": [
+        "telegram",
+        "files",
+        "rename",
+        "bot"
+    ],
+    "repository": "https://github.com/dasqinnagiyev/Yeniden-Adlandir",
+    "website": "https://instagram.com/dasqinnagiyev",
+    "success_url": "https://t.me/yenidenadlandirbot",
+    "env": {
+        "API_ID": {
+            "description": "Bu dəyəri my.telegram.org saytından əldə et"
+        },
+        "API_HASH": {
+            "description": "Bu dəyəri my.telegram.org saytından əldə et"
+        },
+        "BOT_TOKEN": {
+            "description": "Tokeni @BotFather dən əldə et"
+        },
+        "BOT_OWNER": {
+            "description": "Bot sahibinin UserID"
+        },
+        "MONGODB_URI": {
+            "description": "İstifadəçilərin ID-lərini (kanalda) yadda saxlamaq üçün MongoDB Database URI."
+        },
+        "UPDATES_CHANNEL": {
+            "description": "İstifadəçi botu istifadə etmədən öncə kanalına qatılmağını istəyirsənsə kanalın ID-ni yaz. Məsələn: -100123456789",
+            "required": false
+        },
+        "LOG_CHANNEL": {
+            "description": "Logs Kanal ID-si yeni istifadəçiləri və.s görmək üçün. Məsələn: -100123456789"
+        },
+        "DOWNLOAD_PATH": {
+            "description": "Fayl yükləmə yolu. Standart olaraq saxlaya bilərsən. Bununla '/' bitməməlidir",
+            "required": false,
+            "value": "./downloads"
+        },
+        "SLEEP_TIME": {
+            "description": "Proses arasındaki vaxt boşluğu. Standart olaraq saxla.",
+            "value": "5"
+        },
+        "ONE_PROCESS_ONLY": {
+            "description": "İstifadəçi tərəfindən eyni vaxtda yalnız bir ad dəyişmə prosesinə icazə verin.",
+            "required": false
+        },
+        "BROADCAST_AS_COPY": {
+            "description": "Kanalda, kopyala vəya yönləndir etiketi ilə yayımlasın. Dəyər True/False şəklində olmalıdır."
+        },
+        "SESSION_NAME": {
+            "description": "Bot sessiyasının adı."
+        }
+    },
+    "buildpacks": [ 
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }, 
+        { 
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
