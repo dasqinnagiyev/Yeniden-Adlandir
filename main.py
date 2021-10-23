@@ -66,7 +66,7 @@ async def rename_handler(bot: Client, event: Message):
     media = event.video or event.audio or event.document
     if media and media.file_name:
         reply_ = await event.reply_text(
-            text=f"**Hazırki Fayl adı:** `{media.file_name}`\n\nMənə fayla vermək istədiyin yeni adı göndər!",
+            text=f"**Faylın hazırki adı:** `{media.file_name}`\n\nMənə fayla vermək istədiyin yeni adı göndər!",
             quote=True
         )
         download_location = f"{Config.DOWNLOAD_PATH}/{str(event.from_user.id)}/{str(time.time())}/"
@@ -82,7 +82,7 @@ async def rename_handler(bot: Client, event: Message):
                     await reply_.edit("Bağışlayın,\nFayl adının uzunluğu 255 baytdan çoxdur!")
                     return
                 await ask_.delete(True)
-                await reply_.edit("Fayl yüklənir ...")
+                await reply_.edit("Fayl yüklənir...")
                 await asyncio.sleep(Config.SLEEP_TIME)
                 c_time = time.time()
                 try:
@@ -91,7 +91,7 @@ async def rename_handler(bot: Client, event: Message):
                         file_name=new_file_name,
                         progress=progress_for_pyrogram,
                         progress_args=(
-                            "Fayl yüklənir ...",
+                            "Fayl yüklənir...",
                             reply_,
                             c_time
                         )
@@ -167,7 +167,7 @@ async def photo_handler(bot: Client, event: Message):
         return
     editable = await event.reply_text("Gözlə...")
     await db.set_thumbnail(event.from_user.id, thumbnail=event.photo.file_id)
-    await editable.edit("Daimi kiçik şəkil yaddaşda saxlanıldı!")
+    await editable.edit("Kiçik şəkil yadda saxlanıldı!")
 
 
 @RenameBot.on_message(filters.private & filters.command(["delete_thumbnail", "delete_thumb", "del_thumb", "delthumb", "sekilsil"]) & ~filters.edited)
@@ -199,7 +199,7 @@ async def show_thumb_handler(bot: Client, event: Message):
                 chat_id=event.chat.id,
                 photo=_thumbnail,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("Kiçik şəkili sil", callback_data="deleteThumbnail")]]
+                    [[InlineKeyboardButton("Şəkili sil", callback_data="deleteThumbnail")]]
                 ),
                 reply_to_message_id=event.message_id
             )
@@ -208,7 +208,7 @@ async def show_thumb_handler(bot: Client, event: Message):
                 await bot.send_message(
                     chat_id=event.chat.id,
                     text=f"Kiçik şəkil göndərilə bilmir!\n\n**Xəta:** `{err}`",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❎ Close ❎", callback_data="closeMeh")]]),
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("❎ Bağla", callback_data="closeMeh")]]),
                     reply_to_message_id=event.message_id
                 )
             except:
@@ -286,7 +286,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             elif ask_.text and (ask_.text.startswith("/") is True):
                 await cb.message.edit(
                     text="Hazırki proses ləğv edildi!",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Go Back", callback_data="openSettings")]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Geriyə qayıt", callback_data="openSettings")]])
                 )
         except TimeoutError:
             await cb.message.edit(
@@ -308,7 +308,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 elif ask_.text and (ask_.text.startswith("/") is True):
                     await cb.message.edit(
                         text="Hazırki proses ləğv olundu!",
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Go Back", callback_data="openSettings")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Geriyə qayıt", callback_data="openSettings")]])
                     )
             except TimeoutError:
                 await cb.message.edit(
@@ -328,14 +328,14 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
     elif "triggerThumbnail" in cb.data:
         thumbnail = await db.get_thumbnail(cb.from_user.id)
         if thumbnail is None:
-            await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nYadda saxlamaq üçün kiçik şəkil göndər.", show_alert=True)
+            await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nYadda saxlamaq üçün şəkil göndər.", show_alert=True)
         else:
-            await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nKiçik şəkil göndərməyə çalışılır.", show_alert=True)
+            await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nŞəkil göndərməyə çalışılır.", show_alert=True)
             try:
                 await bot.send_photo(
                     chat_id=cb.message.chat.id,
                     photo=thumbnail,
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Kiçik şəkili sil", callback_data="deleteThumbnail")]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Şəkili sil", callback_data="deleteThumbnail")]])
                 )
             except Exception as err:
                 try:
@@ -355,8 +355,8 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if custom_caption_ is not None:
             try:
                 await cb.message.edit(
-                    text=f"**Hazırki xüsusi başlıq:**\n\n`{custom_caption_}`",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Xüsusi başlığı dəyiş", callback_data="forceChangeCaption")]])
+                    text=f"**Hazırki xüsusi başlıq:**\n\n`{custom_caption_}`\nSilmək üçün /bsil komandasını işlət.",
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Başlığı dəyiş", callback_data="forceChangeCaption")]])
                 )
             except MessageNotModified:
                 pass
