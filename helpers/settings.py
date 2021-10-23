@@ -9,7 +9,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 async def OpenSettings(event: Message, user_id: int):
     try:
         await event.edit(
-            text="**Digər komandalar:**\/nayarlar - Ayarlar panelini göstər\n/sekilsil - Şəkili sil (thumbnail)\n/sekilebax - seçdiyiniz kiçik şəkili göstərir\n/bsil - Xüsusi başlığı sil.\n\n**Burda parametrlərinizi təyin edə bilərsiniz:**",
+            text="**Digər komandalar:**\n/ayarlar - Ayarlar panelini göstər\n/sekilsil - Şəkili sil (thumbnail)\n/sekilebax - seçdiyiniz kiçik şəkili göstərir\n/bsil - Xüsusi başlığı sil.\n\n**Burda parametrlərinizi təyin edə bilərsiniz:**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [InlineKeyboardButton(f"Dokument olaraq göndər {'✅' if ((await db.get_upload_as_doc(user_id)) is True) else '❌'}",
