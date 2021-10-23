@@ -17,7 +17,8 @@ Telegramda Faylları Yenidən Adlandır [@dasqinnagiyev](https://t.me/dasqinnagi
 ```
 start - Botu başlat
 ayarlar - Ayarlar panelini göstər
-sekilsil - Kiçik şəkili sil
+sekilsil - Kiçik şəkili sil (thumbnail)
+sekilebax - seçdiyiniz kiçik şəkili göstərir
 bsil - Xüsusi başlığı sil.
 toplumesaj - Yayın mesajı. (Sadəcə admin)
 vezyet - DB-dəki istifadəçi sayı və.s. (Sadəcə admin)
