@@ -22,7 +22,7 @@ Mən faylları yenidən adlandırıram.
 
 Adını dəyişmək vəya kiçik şəkil əlavə etmək istədiyin faylı mənə göndər.
 
-Digər xüsusiyyətləri görmək üçün /settings de.
+Digər xüsusiyyətləri görmək üçün /ayarlar de.
     """
     PROGRESS = """
 Percentage : {0}%
