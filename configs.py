@@ -20,7 +20,7 @@ class Config(object):
     START_TEXT = """
 Mən faylları yenidən adlandırıram.
 
-Adını dəyişmək vəya kiçik şəkil əlavə etmək istədiyin faylı mənə göndər.
+Adını dəyişmək vəya kiçik şəkil (thumbnail) əlavə etmək istədiyin faylı mənə göndər.
 
 Digər xüsusiyyətləri görmək üçün /ayarlar de.
     """
