@@ -330,7 +330,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         if thumbnail is None:
             await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nYadda saxlamaq üçün şəkil göndər.", show_alert=True)
         else:
-            await cb.answer("Yaddaşda kiçik şəkil tapılmadı!\nŞəkil göndərməyə çalışılır.", show_alert=True)
+            await cb.answer("Yaddaşdaki şəkili tapdım!\nŞəkili göndərməyə çalışıram.", show_alert=True)
             try:
                 await bot.send_photo(
                     chat_id=cb.message.chat.id,
@@ -348,14 +348,14 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                     pass
     elif "deleteThumbnail" in cb.data:
         await db.set_thumbnail(cb.from_user.id, thumbnail=None)
-        await cb.answer("Hazırki kiçik şəkil uğurla silindi!", show_alert=True)
+        await cb.answer("Kiçik şəkil uğurla silindi!", show_alert=True)
         await OpenSettings(cb.message, user_id=cb.from_user.id)
     elif ("triggerCaption" in cb.data) or ("forceChangeCaption" in cb.data):
         custom_caption_ = await db.get_caption(cb.from_user.id)
         if custom_caption_ is not None:
             try:
                 await cb.message.edit(
-                    text=f"**Hazırki xüsusi başlıq:**\n\n`{custom_caption_}`\nSilmək üçün /bsil komandasını işlət.",
+                    text=f"**Hazırki başlıq:**\n\n`{custom_caption_}`\nSilmək üçün /bsil komandasını işlət.",
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Başlığı dəyiş", callback_data="forceChangeCaption")]])
                 )
             except MessageNotModified:
@@ -363,7 +363,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
             if "forceChangeCaption" not in cb.data:
                 return
         elif custom_caption_ is None:
-            await cb.answer("Hazırda heç bir fayl başlığı təyin etməmisiniz!", show_alert=True)
+            await cb.answer("Heç bir fayl başlığı təyin etməmisiniz!", show_alert=True)
         await cb.message.edit(
             text="Mənə fayl başlığı göndər!"
         )
@@ -386,7 +386,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
                 await ask_.delete(True)
                 await db.set_caption(cb.from_user.id, caption=caption)
                 await cb.message.edit(
-                    "Xüsusi başlıq uğurla silindi!",
+                    "Xüsusi başlıq yadda saxlandı!",
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("Ayarlara gir", callback_data="openSettings")],
                         [InlineKeyboardButton("Bağla", callback_data="closeMeh")]
